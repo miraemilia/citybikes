@@ -11,7 +11,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
 import com.citybike.backend.model.Journey;
+import com.citybike.backend.model.Station;
 import com.citybike.backend.repository.JourneyRepository;
+import com.citybike.backend.repository.StationRepository;
 import com.citybike.backend.service.CSVReader;
 
 @Component
@@ -20,6 +22,9 @@ public class DatabaseRunner implements CommandLineRunner {
     @Autowired
     private JourneyRepository journeyRepository;
 
+    @Autowired
+    private StationRepository stationRepository;
+
     @Override
     public void run(String... args) throws Exception {
         journeyRepository.deleteAll();
@@ -27,6 +32,14 @@ public class DatabaseRunner implements CommandLineRunner {
         try {
             List<Journey> journeys = CSVReader.csvToJourneys(new FileInputStream(file));
             journeyRepository.saveAll(journeys);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        stationRepository.deleteAll();
+        File stationFile = ResourceUtils.getFile("classpath:data/stations.csv");
+        try {
+            List<Station> stations = CSVReader.csvToStations(new FileInputStream(stationFile));
+            stationRepository.saveAll(stations);
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -12,6 +12,7 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
 import com.citybike.backend.model.Journey;
+import com.citybike.backend.model.Station;
 
 public class CSVReader {
   
@@ -41,5 +42,30 @@ public class CSVReader {
         } catch (IOException e) {
             throw new RuntimeException("failed to parse CSV file: " + e.getMessage());
         }
-    }  
+    }
+
+    public static List<Station> csvToStations(InputStream is) {
+        try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+        CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
+            List<Station> stations = new ArrayList<Station>();
+            Iterable<CSVRecord> csvRecords = csvParser.getRecords();
+            for (CSVRecord csvRecord: csvRecords) {
+                try {
+                    Station station = new Station(
+                        Integer.parseInt(csvRecord.get("ID")),
+                        csvRecord.get("Name"),
+                        csvRecord.get("Osoite"),
+                        csvRecord.get("x"),
+                        csvRecord.get("y")
+                    );
+                    stations.add(station);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            return stations;
+            } catch (IOException e) {
+                throw new RuntimeException("failed to parse CSV file: " + e.getMessage());
+            }
+    }
 }
