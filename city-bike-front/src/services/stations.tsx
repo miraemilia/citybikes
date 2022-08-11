@@ -1,10 +1,13 @@
 import axios from "axios"
+import { Station } from "../types"
 
-const baseUrl = 'http://localhost:8080/api/stations'
+const baseUrl = '/api/stations'
 
 const getAll = async () => {
     const response = await axios.get(baseUrl)
-    return response.data
+    const stations : Station[] = response.data
+    console.log(stations.length)
+    return stations
 }
 
 export default { getAll }

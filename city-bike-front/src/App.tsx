@@ -9,8 +9,10 @@ import StationList from './components/StationList';
 
 import { useAppDispatch } from './hooks';
 import journeyService from './services/journeys'
+import stationService from './services/stations'
 import { setJourneys } from './reducers/journeyReducer';
 import Home from './components/Home';
+import { setStations } from './reducers/stationReducer';
 
 
 
@@ -20,6 +22,7 @@ const App = () => {
   
   useEffect(() => {
     journeyService.getAll().then(journeys => dispatch(setJourneys(journeys)))
+    stationService.getAll().then(stations => dispatch(setStations(stations)))
   }, [dispatch])
 
   return (
