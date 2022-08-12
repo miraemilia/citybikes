@@ -13,12 +13,16 @@ const ViewStation = () => {
     const [arrivalCount, setArrivalCount] = useState<number | undefined>(undefined)
     const [topDestinations, setTopDestinations] = useState<Array<Array<string>> | undefined>(undefined)
     const [topDepartureStations, setTopDepartureStations] = useState<Array<Array<string>> | undefined>(undefined)
+    const [averageFrom, setAverageFrom] = useState<number | undefined>(undefined)
+    const [averageTo, setAverageTo] = useState<number | undefined>(undefined)
 
     useEffect(() => {
         journeyService.getStationDepartures(stationId.toString()).then(totalDepartures => setDepartureCount(totalDepartures))
         journeyService.getStationArrivals(stationId.toString()).then(totalArrivals => setArrivalCount(totalArrivals))
         journeyService.getTopFiveDestinations(stationId.toString()).then(topFiveDestinations => setTopDestinations(topFiveDestinations))
         journeyService.getTopFiveDepartureStations(stationId.toString()).then(topFiveDepartureStations => setTopDepartureStations(topFiveDepartureStations))
+        journeyService.getAverageFrom(stationId.toString()).then(averageF => setAverageFrom(averageF))
+        journeyService.getAverageTo(stationId.toString()).then(averageT => setAverageTo(averageT))
       }, [])
     
     const station : Station | undefined = useAppSelector(state => state.stations.value.find((station) => station.id === Number(stationId)))
@@ -80,6 +84,22 @@ const ViewStation = () => {
                                     <li key={d[0]}>{d[1]} ({d[2]})</li>
                                 ))}
                             </ol>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={6}>
+                    <Card style={{backgroundColor: "lightgrey"}}>
+                        <CardContent>
+                            <h1>{averageFrom?.toFixed(0)} m</h1>
+                            average travel distance from here
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={6}>
+                    <Card style={{backgroundColor: "lightgrey"}}>
+                        <CardContent>
+                            <h1>{averageTo?.toFixed(0)} m</h1>
+                            average travel distance to here
                         </CardContent>
                     </Card>
                 </Grid>

@@ -15,6 +15,12 @@ public interface JourneyRepository extends JpaRepository<Journey, Long> {
      int countByDepartureStation(int id);
      int countByReturnStation(int id);
 
+     @Query("SELECT AVG(j.distance) FROM Journey j WHERE j.departureStation = :id")
+     double averageDistanceFrom(@Param("id") int id);
+
+     @Query("SELECT AVG(j.distance) FROM Journey j WHERE j.returnStation = :id")
+     double averageDistanceTo(@Param("id") int id);
+
      @Query("SELECT j.returnStation, j.returnStationName, COUNT(j) AS returncount FROM Journey j WHERE j.departureStation = :id GROUP BY j.returnStation ORDER BY returncount DESC")
      List<Object[]> topDestinations(@Param("id") int id, Pageable pageable);
 

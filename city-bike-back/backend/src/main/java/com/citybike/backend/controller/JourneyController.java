@@ -35,6 +35,17 @@ public class JourneyController {
         return journeyRepository.countByReturnStation(stationId);
     }
 
+    @GetMapping("/api/journeys/{stationId}/averageDistanceFrom")
+    public double getAverageDistanceFrom(@PathVariable int stationId) {
+        return journeyRepository.averageDistanceFrom(stationId);
+    }
+
+    @GetMapping("/api/journeys/{stationId}/averageDistanceTo")
+    public double getAverageDistanceTo(@PathVariable int stationId) {
+        return journeyRepository.averageDistanceTo(stationId);
+    }
+
+
     @GetMapping("/api/journeys/{stationId}/topDestinations")
     public List<Object[]> topFiveDestinations(@PathVariable int stationId) {
         Pageable topFive = PageRequest.of(0, 5);

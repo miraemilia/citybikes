@@ -17,6 +17,20 @@ const getStationDepartures = async (stationId : string) => {
     return totalDepartures
 }
 
+const getAverageFrom = async (stationId : string) => {
+    const response = await axios.get(baseUrl + `/${stationId}/averageDistanceFrom`)
+    console.log("average distance from:", response.data)
+    const average : number = response.data
+    return average
+}
+
+const getAverageTo = async (stationId : string) => {
+    const response = await axios.get(baseUrl + `/${stationId}/averageDistanceTo`)
+    console.log("average distance to:", response.data)
+    const average : number = response.data
+    return average
+}
+
 const getStationArrivals = async (stationId : string) => {
     const response = await axios.get(baseUrl + `/${stationId}/totalArrivals`)
     console.log("arrivals:", response.data)
@@ -38,4 +52,4 @@ const getTopFiveDepartureStations = async (stationId : string) => {
     return topDepartureStations
 }
 
-export default { getAll, getStationDepartures, getStationArrivals, getTopFiveDestinations, getTopFiveDepartureStations }
+export default { getAll, getStationDepartures, getStationArrivals, getTopFiveDestinations, getTopFiveDepartureStations, getAverageFrom, getAverageTo }
