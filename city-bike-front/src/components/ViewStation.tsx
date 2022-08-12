@@ -11,10 +11,14 @@ const ViewStation = () => {
 
     const [departureCount, setDepartureCount] = useState<number | undefined>(undefined)
     const [arrivalCount, setArrivalCount] = useState<number | undefined>(undefined)
+    const [topDestinations, setTopDestinations] = useState<Array<Array<number>> | undefined>(undefined)
+    const [topDepartureStations, setTopDepartureStations] = useState<Array<Array<number>> | undefined>(undefined)
 
     useEffect(() => {
         journeyService.getStationDepartures(stationId.toString()).then(totalDepartures => setDepartureCount(totalDepartures))
         journeyService.getStationArrivals(stationId.toString()).then(totalArrivals => setArrivalCount(totalArrivals))
+        journeyService.getTopFiveDestinations(stationId.toString()).then(topFiveDestinations => setTopDestinations(topFiveDestinations))
+        journeyService.getTopFiveDepartureStations(stationId.toString()).then(topFiveDepartureStations => setTopDepartureStations(topFiveDepartureStations))
       }, [])
     
     const station : Station | undefined = useAppSelector(state => state.stations.value.find((station) => station.id === Number(stationId)))
@@ -51,9 +55,11 @@ const ViewStation = () => {
                 <Grid item xs={6}>
                     <Card>
                         <CardContent>
-                            <h4>TOP 5 departure stations</h4>
+                            <h4>TOP 5 return stations</h4>
                             <ol>
-                                <li></li>
+                                {topDestinations?.map(d => (
+                                    <li key={d[0]}>{d[0]} ({d[1]})</li>
+                                ))}
                             </ol>
                         </CardContent>
                     </Card>
@@ -61,9 +67,11 @@ const ViewStation = () => {
                 <Grid item xs={6}>
                     <Card>
                         <CardContent>
-                            <h4>TOP 5 return stations</h4>
+                            <h4>TOP 5 departure stations</h4>
                             <ol>
-                                <li></li>
+                                {topDepartureStations?.map(d => (
+                                    <li key={d[0]}>{d[0]} ({d[1]})</li>
+                                ))}
                             </ol>
                         </CardContent>
                     </Card>
