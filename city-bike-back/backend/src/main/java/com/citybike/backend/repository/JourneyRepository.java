@@ -14,9 +14,9 @@ public interface JourneyRepository extends JpaRepository<Journey, Long> {
      int countByDepartureStation(int id);
      int countByReturnStation(int id);
 
-     @Query("SELECT j.returnStation, COUNT(j) AS returncount FROM Journey j WHERE j.departureStation = :id GROUP BY j.returnStation ORDER BY returncount DESC")
+     @Query("SELECT j.returnStation, j.returnStationName, COUNT(j) AS returncount FROM Journey j WHERE j.departureStation = :id GROUP BY j.returnStation ORDER BY returncount DESC")
      List<Object[]> topDestinations(@Param("id") int id, Pageable pageable);
 
-     @Query("SELECT j.departureStation, COUNT(j) AS departurecount FROM Journey j WHERE j.returnStation = :id GROUP BY j.departureStation ORDER BY departurecount DESC")
+     @Query("SELECT j.departureStation, j.departureStationName, COUNT(j) AS departurecount FROM Journey j WHERE j.returnStation = :id GROUP BY j.departureStation ORDER BY departurecount DESC")
      List<Object[]> topDepartureStations(@Param("id") int id, Pageable pageable);
 }

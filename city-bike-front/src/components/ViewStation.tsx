@@ -11,8 +11,8 @@ const ViewStation = () => {
 
     const [departureCount, setDepartureCount] = useState<number | undefined>(undefined)
     const [arrivalCount, setArrivalCount] = useState<number | undefined>(undefined)
-    const [topDestinations, setTopDestinations] = useState<Array<Array<number>> | undefined>(undefined)
-    const [topDepartureStations, setTopDepartureStations] = useState<Array<Array<number>> | undefined>(undefined)
+    const [topDestinations, setTopDestinations] = useState<Array<Array<string>> | undefined>(undefined)
+    const [topDepartureStations, setTopDepartureStations] = useState<Array<Array<string>> | undefined>(undefined)
 
     useEffect(() => {
         journeyService.getStationDepartures(stationId.toString()).then(totalDepartures => setDepartureCount(totalDepartures))
@@ -65,7 +65,7 @@ const ViewStation = () => {
                             <h4>TOP 5 return stations</h4>
                             <ol>
                                 {topDestinations?.map(d => (
-                                    <li key={d[0]}>{d[0]} ({d[1]})</li>
+                                    <li key={d[0]}>{d[1]} ({d[2]})</li>
                                 ))}
                             </ol>
                         </CardContent>
@@ -77,7 +77,7 @@ const ViewStation = () => {
                             <h4>TOP 5 departure stations</h4>
                             <ol>
                                 {topDepartureStations?.map(d => (
-                                    <li key={d[0]}>{d[0]} ({d[1]})</li>
+                                    <li key={d[0]}>{d[1]} ({d[2]})</li>
                                 ))}
                             </ol>
                         </CardContent>

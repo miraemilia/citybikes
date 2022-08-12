@@ -18,7 +18,9 @@ public class Journey extends AbstractPersistable<Long>  {
 	private String departureDate;
     private String returnDate;
     private int departureStation;
+    private String departureStationName;
     private int returnStation;
+    private String returnStationName;
     @Min(value = 10, message="distance too short")
     private int distance;
     @Min(value = 10, message="duration too short")

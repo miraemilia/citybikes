@@ -28,7 +28,9 @@ public class CSVReader {
                             csvRecord.get("Departure"),
                             csvRecord.get("Return"),
                             Integer.parseInt(csvRecord.get("Departure station id")),
+                            csvRecord.get("Departure station name"),
                             Integer.parseInt(csvRecord.get("Return station id")),
+                            csvRecord.get("Return station name"),
                             Integer.parseInt(csvRecord.get("Covered distance (m)")),
                             Integer.parseInt(csvRecord.get("Duration (sec.)"))
                         );
