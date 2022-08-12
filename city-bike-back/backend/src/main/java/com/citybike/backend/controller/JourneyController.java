@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.citybike.backend.model.Journey;
@@ -18,6 +19,11 @@ public class JourneyController {
     @GetMapping("/api/journeys")
     public List<Journey> allJourneys(){
         return journeyRepository.findAll();
+    }
+
+    @GetMapping("/api/journeys/{stationId}/totalDepartures")
+    public int totalStationDepartures(@PathVariable int stationId) {
+        return journeyRepository.countByDepartureStation(stationId);
     }
 
 }

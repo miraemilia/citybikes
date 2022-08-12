@@ -11,7 +11,7 @@ export interface Journey {
 export interface Station {
     id: number,
     name: string,
-    city: string,
+    address: string,
     x: string,
     y: string
 }

@@ -1,12 +1,20 @@
-import { Container } from "@mui/material"
+import { Container, Grid, Card, CardContent } from "@mui/material"
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../hooks"
 import { Station } from "../types"
+import journeyService from "../services/journeys"
+import { useEffect, useState } from "react";
 
 const ViewStation = () => {
 
     const stationId = Number(useParams().id);
 
+    const [departureCount, setDepartureCount] = useState<number | undefined>(undefined)
+
+    useEffect(() => {
+        journeyService.getStationDepartures(stationId.toString()).then(totalDepartures => setDepartureCount(totalDepartures))
+      }, [])
+    
     const station : Station | undefined = useAppSelector(state => state.stations.value.find((station) => station.id === Number(stationId)))
 
     if (station === null || station === undefined) {
@@ -19,7 +27,47 @@ const ViewStation = () => {
 
     return (
         <Container maxWidth="md">
-            <h3>{station.name}</h3>
+            <h2>{station.name}</h2>
+            <h4>{station.address}</h4>
+            <Container maxWidth="sm">
+            <Grid container spacing={8}>
+                <Grid item xs={6}>
+                    <Card>
+                        <CardContent>
+                            <h1>{departureCount}</h1>
+                            journeys from the station
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={6}>
+                    <Card>
+                        <CardContent>
+                            <h4></h4>
+                            journeys to the station</CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={6}>
+                    <Card>
+                        <CardContent>
+                            <h4>TOP 5 departure stations</h4>
+                            <ol>
+                                <li></li>
+                            </ol>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={6}>
+                    <Card>
+                        <CardContent>
+                            <h4>TOP 5 return stations</h4>
+                            <ol>
+                                <li></li>
+                            </ol>
+                        </CardContent>
+                    </Card>
+                </Grid>
+            </Grid>
+            </Container>
         </Container>
     )
 }
