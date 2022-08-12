@@ -1,13 +1,13 @@
 import { Container } from '@mui/material';
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useMatch } from 'react-router-dom';
 
 import Header from './components/Header'
 import JourneyList from './components/JourneyList';
-import Station from './components/Station';
+import ViewStation from './components/ViewStation';
 import StationList from './components/StationList';
 
-import { useAppDispatch } from './hooks';
+import { useAppDispatch, useAppSelector } from './hooks';
 import journeyService from './services/journeys'
 import stationService from './services/stations'
 import { setJourneys } from './reducers/journeyReducer';
@@ -32,7 +32,7 @@ const App = () => {
         <Routes>
           <Route path='journeys' element={<JourneyList />} />
           <Route path='stations' element={<StationList />} />
-          <Route path='/stations/:id' element={<Station />} />
+          <Route path='/stations/:id' element={<ViewStation />} />
           <Route path='/' element={<Home />} />
         </Routes>
       </BrowserRouter>

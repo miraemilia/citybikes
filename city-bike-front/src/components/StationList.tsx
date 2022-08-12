@@ -1,4 +1,4 @@
-import { Container } from "@mui/material"
+import { Container, Link } from "@mui/material"
 import { useAppSelector } from "../hooks"
 
 const StationList = () => {
@@ -10,7 +10,9 @@ const StationList = () => {
             <h3>Stations</h3>
             <ul>
                 {stations.map((station) => (
-                    <li key={station.id}>{station.name}</li>
+                    <li key={station.id}>
+                        <Link href={`/stations/${station.id}`}>{station.name}</Link>
+                    </li>
                 ))}
             </ul>
         </Container>
