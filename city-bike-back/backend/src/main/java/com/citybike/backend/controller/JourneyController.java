@@ -19,4 +19,5 @@ public class JourneyController {
     public List<Journey> allJourneys(){
         return journeyRepository.findAll();
     }
+
 }
