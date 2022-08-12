@@ -10,9 +10,11 @@ const ViewStation = () => {
     const stationId = Number(useParams().id);
 
     const [departureCount, setDepartureCount] = useState<number | undefined>(undefined)
+    const [arrivalCount, setArrivalCount] = useState<number | undefined>(undefined)
 
     useEffect(() => {
         journeyService.getStationDepartures(stationId.toString()).then(totalDepartures => setDepartureCount(totalDepartures))
+        journeyService.getStationArrivals(stationId.toString()).then(totalArrivals => setArrivalCount(totalArrivals))
       }, [])
     
     const station : Station | undefined = useAppSelector(state => state.stations.value.find((station) => station.id === Number(stationId)))
@@ -42,7 +44,7 @@ const ViewStation = () => {
                 <Grid item xs={6}>
                     <Card>
                         <CardContent>
-                            <h4></h4>
+                            <h1>{arrivalCount}</h1>
                             journeys to the station</CardContent>
                     </Card>
                 </Grid>

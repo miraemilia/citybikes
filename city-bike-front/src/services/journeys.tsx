@@ -17,4 +17,11 @@ const getStationDepartures = async (stationId : string) => {
     return totalDepartures
 }
 
-export default { getAll, getStationDepartures }
+const getStationArrivals = async (stationId : string) => {
+    const response = await axios.get(baseUrl + `/${stationId}/totalArrivals`)
+    console.log("arrivals:", response.data)
+    const totalArrivals : number = response.data
+    return totalArrivals
+}
+
+export default { getAll, getStationDepartures, getStationArrivals }

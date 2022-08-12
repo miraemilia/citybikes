@@ -7,4 +7,5 @@ import com.citybike.backend.model.Journey;
 public interface JourneyRepository extends JpaRepository<Journey, Long> {
      // add pagination
      int countByDepartureStation(int id);
+     int countByReturnStation(int id);
 }

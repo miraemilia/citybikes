@@ -26,4 +26,9 @@ public class JourneyController {
         return journeyRepository.countByDepartureStation(stationId);
     }
 
+    @GetMapping("/api/journeys/{stationId}/totalArrivals")
+    public int totalStationArrivals(@PathVariable int stationId) {
+        return journeyRepository.countByReturnStation(stationId);
+    }
+
 }
