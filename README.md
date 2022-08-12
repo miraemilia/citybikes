@@ -9,7 +9,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022.
 - importing data from files in csv format to an in-memory database
     - data is imported at project startup
     - all stations
-    - 1000 rows of journey data
+    - 100 rows of journey data
 - input data validation
     - data type validation
     - journeys with the minimum of 10m of distance and 10sec of duration are imported
@@ -26,6 +26,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022.
 
 ## Prerequisites for running the project:
 - [Node](https://nodejs.org/en/download/) (v16.13.1 with npm v8.1.2 were used for development)
+- [Docker]()
 
 
 ## Configurations:
@@ -36,7 +37,9 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022.
     - run `npm install` in the frontend folder
     - start frontend with `npm start` (runs at http://localhost:3000/)
 - Backend:
-
+    - nagigate to folder city-bikes-back/backend
+    - build image with `docker build -t citybikes .`
+    - run with `docker run -p 8080:8080 citybikes`
 ### How to run tests?
 - both frontend and backend running (see above)
 - run Cypress with `npm run cypress:open`
