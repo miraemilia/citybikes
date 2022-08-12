@@ -3,6 +3,8 @@ package com.citybike.backend.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,4 +33,15 @@ public class JourneyController {
         return journeyRepository.countByReturnStation(stationId);
     }
 
+    @GetMapping("/api/journeys/{stationId}/topDestinations")
+    public List<Object[]> topFiveDestinations(@PathVariable int stationId) {
+        Pageable topFive = PageRequest.of(0, 5);
+        return journeyRepository.topDestinations(stationId, topFive);
+    }
+
+    @GetMapping("/api/journeys/{stationId}/topDepartureStations")
+    public List<Object[]> topFiveDepartureStations(@PathVariable int stationId) {
+        Pageable topFive = PageRequest.of(0, 5);
+        return journeyRepository.topDepartureStations(stationId, topFive);
+    }
 }
