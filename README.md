@@ -9,14 +9,20 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022.
 - importing data from files in csv format to an in-memory database
     - data is imported at project startup
     - all stations
-    - 100 rows of journey data
+    - journey data from one day (31st of May 2021)
 - input data validation
     - data type validation
     - journeys with the minimum of 10m of distance and 10sec of duration are imported
-- endpoints for journeys and stations
+- endpoints for:
+    - 100 journeys
+    - stations
+    - number of journeys from/to every station
+    - top5 return/departure stations for every station
+    - average distance from/to each station
 #### Frontend
 - listing journeys as a table
 - listing stations
+- viewing single station data
 
 ## Technologies used:
 - Frontend: React, Typescript, MaterialUI
@@ -26,10 +32,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022.
 
 ## Prerequisites for running the project:
 - [Node](https://nodejs.org/en/download/) (v16.13.1 with npm v8.1.2 were used for development)
-- [Docker]()
-
-
-## Configurations:
+- [Docker](https://docs.docker.com/get-docker/)
 
 ## How to run the project?
 - clone the project
@@ -45,17 +48,16 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022.
 - run Cypress with `npm run cypress:open`
 
 ## TODO:
-- E2E tests
-- single station endpoint
-- viewing individual station data
-- better exception handling
+- more E2E tests
 - pagination
-- more queries
-- containerize backend (and frontend?)
+- station search
+- add relationship between Station (id) and Journey (departure/returnStation) entities -> remove departure/returnStationName from Journey
+- better exception handling
+- containerize frontend
 - cleanup
 
 ### What next?
-- testing for backend
-- handling multiple full csv files
+- unit testing for backend
 - real database (mySql or PostgreSQL?)
+- handling multiple full csv files
 - prettier UI
