@@ -31,18 +31,18 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022.
 - Tests: Cypress
 
 ## Prerequisites for running the project:
-- [Node](https://nodejs.org/en/download/) (v16.13.1 with npm v8.1.2 were used for development)
 - [Docker](https://docs.docker.com/get-docker/)
 
 ## How to run the project?
 - clone the project
 - Frontend:
-    - run `npm install` in the frontend folder
-    - start frontend with `npm start` (runs at http://localhost:3000/)
+    - nagigate to folder city-bikes-front
+    - build image with `docker build -t citybikes .`
+    - run with `docker run -p 3000:3000 citybikes` (runs at http://localhost:3000/)
 - Backend:
     - nagigate to folder city-bikes-back/backend
-    - build image with `docker build -t citybikes .`
-    - run with `docker run -p 8080:8080 citybikes`
+    - build image with `docker build -t citybikes-back .`
+    - run with `docker run -p 8080:8080 citybikes-back` (runs at http://localhost:8080/)
 ### How to run tests?
 - both frontend and backend running (see above)
 - run Cypress with `npm run cypress:open`
@@ -53,8 +53,6 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022.
 - station search
 - add relationship between Station (id) and Journey (departure/returnStation) entities -> remove departure/returnStationName from Journey
 - better exception handling
-- containerize frontend
-- cleanup
 
 ### What next?
 - unit testing for backend
