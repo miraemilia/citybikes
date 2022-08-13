@@ -1,13 +1,13 @@
 import { Container } from '@mui/material';
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useMatch } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header'
 import JourneyList from './components/JourneyList';
 import ViewStation from './components/ViewStation';
 import StationList from './components/StationList';
 
-import { useAppDispatch, useAppSelector } from './hooks';
+import { useAppDispatch } from './hooks';
 import journeyService from './services/journeys'
 import stationService from './services/stations'
 import { setJourneys } from './reducers/journeyReducer';
