@@ -10,6 +10,15 @@ const getAll = async () => {
     return journeys
 }
 
+const getJourneyPage = async (perPage : number, page : number) => {
+    const response = await axios.get(baseUrl + `/${perPage}/${page}`)
+    const journeys : Journey[] = response.data.content
+    const totalPages : number = response.data.totalPages
+    console.log(journeys.length, totalPages)
+    const pageInfo = { journeys: journeys, totalPages: totalPages}
+    return pageInfo
+}
+
 const getStationDepartures = async (stationId : string) => {
     const response = await axios.get(baseUrl + `/${stationId}/totalDepartures`)
     console.log("departures:", response.data)
@@ -52,4 +61,4 @@ const getTopFiveDepartureStations = async (stationId : string) => {
     return topDepartureStations
 }
 
-export default { getAll, getStationDepartures, getStationArrivals, getTopFiveDestinations, getTopFiveDepartureStations, getAverageFrom, getAverageTo }
+export default { getAll, getJourneyPage, getStationDepartures, getStationArrivals, getTopFiveDestinations, getTopFiveDepartureStations, getAverageFrom, getAverageTo }

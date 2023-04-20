@@ -19,10 +19,10 @@ public class JourneyController {
     @Autowired
     private JourneyRepository journeyRepository;
 
-    @GetMapping("/api/journeys")
-    public Page<Journey> allJourneys(){
-        Pageable getHundred = PageRequest.of(0, 100);
-        return journeyRepository.findAll(getHundred);
+    @GetMapping("/api/journeys/{perPage}/{page}")
+    public Page<Journey> allJourneysByPage(@PathVariable int perPage, @PathVariable int page){
+        Pageable journeyPage = PageRequest.of(page, perPage);
+        return journeyRepository.findAll(journeyPage);
     }
 
     @GetMapping("/api/journeys/{stationId}/totalDepartures")
