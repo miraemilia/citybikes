@@ -11,29 +11,26 @@ import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 
-import com.citybike.backend.model.Journey;
 import com.citybike.backend.model.Station;
 
 public class CSVReader {
   
-    public static List<Journey> csvToJourneys(InputStream is) {
+    public static ArrayList<String[]> csvToJourneys(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
         CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
-            List<Journey> journeys = new ArrayList<Journey>();
+            ArrayList<String[]> journeys = new ArrayList<>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord: csvRecords) {
                 try {
                     if (Integer.parseInt(csvRecord.get("Covered distance (m)")) >= 10 && Integer.parseInt(csvRecord.get("Duration (sec.)")) >=10) {
-                        Journey journey = new Journey(
+                        String[] journey = {
                             csvRecord.get("Departure"),
                             csvRecord.get("Return"),
-                            Integer.parseInt(csvRecord.get("Departure station id")),
-                            csvRecord.get("Departure station name"),
-                            Integer.parseInt(csvRecord.get("Return station id")),
-                            csvRecord.get("Return station name"),
-                            Integer.parseInt(csvRecord.get("Covered distance (m)")),
-                            Integer.parseInt(csvRecord.get("Duration (sec.)"))
-                        );
+                            csvRecord.get("Departure station id"),
+                            csvRecord.get("Return station id"),
+                            csvRecord.get("Covered distance (m)"),
+                            csvRecord.get("Duration (sec.)")
+                        };
                         journeys.add(journey);
                     }
                 } catch (Exception e) {

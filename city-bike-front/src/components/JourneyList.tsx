@@ -55,8 +55,8 @@ const JourneyList = () => {
                     <TableBody>
                         {journeys.map((journey) => (
                             <TableRow key={journey.id} >
-                                <TableCell>{journey.departureStationName}</TableCell>
-                                <TableCell>{journey.returnStationName}</TableCell>
+                                <TableCell>{journey.departureStation.name}</TableCell>
+                                <TableCell>{journey.returnStation.name}</TableCell>
                                 <TableCell>{journey.distance}</TableCell>
                                 <TableCell>{journey.duration}</TableCell>
                             </TableRow>

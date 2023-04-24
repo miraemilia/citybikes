@@ -9,21 +9,22 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.citybike.backend.model.Journey;
+import com.citybike.backend.model.Station;
 
 public interface JourneyRepository extends JpaRepository<Journey, Long> {
      Page<Journey> findAll(Pageable pageable);
-     int countByDepartureStation(int id);
-     int countByReturnStation(int id);
+     int countByDepartureStationId (int id);
+     int countByReturnStationId(int id);
 
-     @Query("SELECT AVG(j.distance) FROM Journey j WHERE j.departureStation = :id")
+     @Query("SELECT AVG(j.distance) FROM Journey j WHERE j.departureStation.id = :id")
      double averageDistanceFrom(@Param("id") int id);
 
-     @Query("SELECT AVG(j.distance) FROM Journey j WHERE j.returnStation = :id")
+     @Query("SELECT AVG(j.distance) FROM Journey j WHERE j.returnStation.id = :id")
      double averageDistanceTo(@Param("id") int id);
 
-     @Query("SELECT j.returnStation, j.returnStationName, COUNT(j) AS returncount FROM Journey j WHERE j.departureStation = :id GROUP BY j.returnStation ORDER BY returncount DESC")
+     @Query("SELECT j.returnStation.id, j.returnStation.name, COUNT(j) AS returncount FROM Journey j WHERE j.departureStation.id = :id GROUP BY j.returnStation.id ORDER BY returncount DESC")
      List<Object[]> topDestinations(@Param("id") int id, Pageable pageable);
 
-     @Query("SELECT j.departureStation, j.departureStationName, COUNT(j) AS departurecount FROM Journey j WHERE j.returnStation = :id GROUP BY j.departureStation ORDER BY departurecount DESC")
+     @Query("SELECT j.departureStation.id, j.departureStation.name, COUNT(j) AS departurecount FROM Journey j WHERE j.returnStation.id = :id GROUP BY j.departureStation.id ORDER BY departurecount DESC")
      List<Object[]> topDepartureStations(@Param("id") int id, Pageable pageable);
 }

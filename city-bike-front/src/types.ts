@@ -2,10 +2,8 @@ export interface Journey {
     id: number, 
     departureDate: Date,
     returnDate: Date, 
-    departureStation: number,
-    departureStationName: string,
-    returnStation: number,
-    returnStationName: string,
+    departureStation: Station,
+    returnStation: Station,
     distance: number,
     duration: number
 }

@@ -2,6 +2,7 @@ package com.citybike.backend;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,19 +28,35 @@ public class DatabaseRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        journeyRepository.deleteAll();
-        File file = ResourceUtils.getFile("classpath:data/testjourneys.csv");
-        try {
-            List<Journey> journeys = CSVReader.csvToJourneys(new FileInputStream(file));
-            journeyRepository.saveAll(journeys);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         stationRepository.deleteAll();
         File stationFile = ResourceUtils.getFile("classpath:data/stations.csv");
         try {
             List<Station> stations = CSVReader.csvToStations(new FileInputStream(stationFile));
             stationRepository.saveAll(stations);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        journeyRepository.deleteAll();
+        File file = ResourceUtils.getFile("classpath:data/testjourneys.csv");
+        try {
+            ArrayList<String[]> journeyData = CSVReader.csvToJourneys(new FileInputStream(file));
+            ArrayList<Journey> journeys = new ArrayList<>();
+            for (String[] j : journeyData) {
+                Station dStation = stationRepository.findById(Integer.parseInt(j[2]));
+                Station rStation = stationRepository.findById(Integer.parseInt(j[3]));
+                Journey journey = new Journey(
+                    j[0],
+                    j[1],
+                    dStation,
+                    rStation,
+                    Integer.parseInt(j[4]),
+                    Integer.parseInt(j[5])
+                );
+                journeys.add(journey);
+            }
+            journeyRepository.saveAll(journeys);
         } catch (Exception e) {
             e.printStackTrace();
         }

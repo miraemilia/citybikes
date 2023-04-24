@@ -11,13 +11,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.citybike.backend.model.Journey;
+import com.citybike.backend.model.Station;
 import com.citybike.backend.repository.JourneyRepository;
+import com.citybike.backend.repository.StationRepository;
 
 @RestController
 public class JourneyController {
 
     @Autowired
     private JourneyRepository journeyRepository;
+
+    @Autowired
+    private StationRepository stationRepository;
 
     @GetMapping("/api/journeys/{perPage}/{page}")
     public Page<Journey> allJourneysByPage(@PathVariable int perPage, @PathVariable int page){
@@ -27,12 +32,12 @@ public class JourneyController {
 
     @GetMapping("/api/journeys/{stationId}/totalDepartures")
     public int totalStationDepartures(@PathVariable int stationId) {
-        return journeyRepository.countByDepartureStation(stationId);
+        return journeyRepository.countByDepartureStationId(stationId);
     }
 
     @GetMapping("/api/journeys/{stationId}/totalArrivals")
     public int totalStationArrivals(@PathVariable int stationId) {
-        return journeyRepository.countByReturnStation(stationId);
+        return journeyRepository.countByReturnStationId(stationId);
     }
 
     @GetMapping("/api/journeys/{stationId}/averageDistanceFrom")
