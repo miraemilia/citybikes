@@ -32,7 +32,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 
 ## Prerequisites for running the project:
 - [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose] (https://docs.docker.com/compose/install/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## How to run the project?
 - clone the project
