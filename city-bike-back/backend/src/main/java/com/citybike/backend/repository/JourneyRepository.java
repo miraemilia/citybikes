@@ -7,10 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
 import com.citybike.backend.model.Journey;
-import com.citybike.backend.model.Station;
 
+@Repository
 public interface JourneyRepository extends JpaRepository<Journey, Long> {
      Page<Journey> findAll(Pageable pageable);
      int countByDepartureStationId (int id);
@@ -27,4 +28,5 @@ public interface JourneyRepository extends JpaRepository<Journey, Long> {
 
      @Query("SELECT j.departureStation.id, j.departureStation.name, COUNT(j) AS departurecount FROM Journey j WHERE j.returnStation.id = :id GROUP BY j.departureStation.id ORDER BY departurecount DESC")
      List<Object[]> topDepartureStations(@Param("id") int id, Pageable pageable);
+
 }

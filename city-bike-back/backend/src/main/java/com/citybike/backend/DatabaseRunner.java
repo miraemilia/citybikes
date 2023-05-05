@@ -5,7 +5,10 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -26,8 +29,13 @@ public class DatabaseRunner implements CommandLineRunner {
     @Autowired
     private StationRepository stationRepository;
 
+    @Value("${spring.profiles.active:}")
+    private String[] activeProfiles; 
+
     @Override
     public void run(String... args) throws Exception {
+
+        String resource = "classpath:data/testjourneys.csv";
 
         stationRepository.deleteAll();
         File stationFile = ResourceUtils.getFile("classpath:data/stations.csv");
@@ -38,27 +46,38 @@ public class DatabaseRunner implements CommandLineRunner {
             e.printStackTrace();
         }
 
+        if (activeProfiles.length > 0) {
+            System.out.println(activeProfiles[0]);
+            if (activeProfiles[0].equals("dev")) {
+                resource = "classpath:data/2021-05-31.csv";
+            } else if (activeProfiles[0].equals("prod")){
+                resource = "classpath:data/2021-05-31.csv";
+            }
+        }
+        System.out.println(resource);
+     
+
         journeyRepository.deleteAll();
-        File file = ResourceUtils.getFile("classpath:data/testjourneys.csv");
-        try {
-            ArrayList<String[]> journeyData = CSVReader.csvToJourneys(new FileInputStream(file));
-            ArrayList<Journey> journeys = new ArrayList<>();
-            for (String[] j : journeyData) {
-                Station dStation = stationRepository.findById(Integer.parseInt(j[2]));
-                Station rStation = stationRepository.findById(Integer.parseInt(j[3]));
-                Journey journey = new Journey(
+        File file = ResourceUtils.getFile(resource);
+        ArrayList<String[]> journeyData = CSVReader.csvToJourneys(new FileInputStream(file));
+        insertJourneys(journeyData);
+    }
+
+    @Transactional
+    public void insertJourneys (ArrayList<String[]> journeyData) {
+        for (String[] j : journeyData) {
+            try {
+                journeyRepository.save(new Journey(
                     j[0],
                     j[1],
-                    dStation,
-                    rStation,
+                    stationRepository.findById(Integer.parseInt(j[2])),
+                    stationRepository.findById(Integer.parseInt(j[3])),
                     Integer.parseInt(j[4]),
                     Integer.parseInt(j[5])
-                );
-                journeys.add(journey);
+                ));
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            journeyRepository.saveAll(journeys);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }
