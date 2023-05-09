@@ -48,22 +48,32 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
     - Production: run with `docker-compose -f docker-compose_prod.yml up -d` (runs at http://localhost:8080/)
     - Development: run with `docker-compose -f docker-compose_dev.yml up -d` (runs at http://localhost:8080/)
 
-### How to run tests?
+## How to run tests?
+
+### E2E testing
 - both frontend and backend running (see above)
 - run Cypress with `npm run cypress:open`
+
+### Backend testing
+- navigate to folder city-bikes-back/backend (Maven needed) or Docker Desktop container terminal
+- run tests with `mvn clean test`
 
 ## Changes made in 2023
 - pagination added
 - ManyToOne relationship between Station (id) and Journey (departure/returnStation) entities -> departure/returnStationName removed from Journey object
 - MySQL database
 - Spring profiles: dev, prod, test
+- unit tests for backend (csvReader)
 
 ## TODO:
-- unit testing for backend
+- more validation criteria + tests
+- integration testing
 - more E2E tests
+- pagination: navigate to first page after "per page" change
 - station search
 - better exception handling
 
 ### What next?
+- stations on map
 - handling multiple full csv files
 - prettier UI

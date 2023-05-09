@@ -34,4 +34,4 @@ build/
 
 .env
 
-devdatabase.mv.db
+devdb.mv.db

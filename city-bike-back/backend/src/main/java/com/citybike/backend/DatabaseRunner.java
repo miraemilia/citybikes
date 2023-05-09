@@ -37,6 +37,18 @@ public class DatabaseRunner implements CommandLineRunner {
 
         String resource = "classpath:data/testjourneys.csv";
 
+        if (activeProfiles.length > 0) {
+            System.out.println(activeProfiles[0]);
+            if (activeProfiles[0].equals("dev")) {
+                resource = "classpath:data/2021-05-31.csv";
+            } else if (activeProfiles[0].equals("prod")){
+                resource = "classpath:data/2021-05-31.csv";
+            } else if (activeProfiles[0].equals("test")) {
+                return;
+            }
+        }
+        System.out.println(resource);
+
         stationRepository.deleteAll();
         File stationFile = ResourceUtils.getFile("classpath:data/stations.csv");
         try {
@@ -45,17 +57,6 @@ public class DatabaseRunner implements CommandLineRunner {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        if (activeProfiles.length > 0) {
-            System.out.println(activeProfiles[0]);
-            if (activeProfiles[0].equals("dev")) {
-                resource = "classpath:data/2021-05-31.csv";
-            } else if (activeProfiles[0].equals("prod")){
-                resource = "classpath:data/2021-05-31.csv";
-            }
-        }
-        System.out.println(resource);
-     
 
         journeyRepository.deleteAll();
         File file = ResourceUtils.getFile(resource);
