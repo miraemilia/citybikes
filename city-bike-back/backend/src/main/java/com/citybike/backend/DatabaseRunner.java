@@ -2,7 +2,6 @@ package com.citybike.backend;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -19,6 +18,7 @@ import com.citybike.backend.model.Station;
 import com.citybike.backend.repository.JourneyRepository;
 import com.citybike.backend.repository.StationRepository;
 import com.citybike.backend.service.CSVReader;
+import com.citybike.backend.service.JourneyImport;
 
 @Component
 public class DatabaseRunner implements CommandLineRunner {
@@ -59,21 +59,21 @@ public class DatabaseRunner implements CommandLineRunner {
 
         journeyRepository.deleteAll();
         File file = ResourceUtils.getFile(resource);
-        ArrayList<String[]> journeyData = CSVReader.csvToJourneys(new FileInputStream(file));
+        List<JourneyImport> journeyData = CSVReader.csvToJourneys(new FileInputStream(file));
         insertJourneys(journeyData);
     }
 
     @Transactional
-    public void insertJourneys (ArrayList<String[]> journeyData) {
-        for (String[] j : journeyData) {
+    public void insertJourneys (List<JourneyImport> journeyData) {
+        for (JourneyImport j : journeyData) {
             try {
                 journeyRepository.save(new Journey(
-                    j[0],
-                    j[1],
-                    stationRepository.findById(Integer.parseInt(j[2])),
-                    stationRepository.findById(Integer.parseInt(j[3])),
-                    Integer.parseInt(j[4]),
-                    Integer.parseInt(j[5])
+                    j.departureDate,
+                    j.returnDate,
+                    stationRepository.findById(j.departureStationId),
+                    stationRepository.findById(j.returnStationId),
+                    j.distance,
+                    j.duration
                 ));
             } catch (Exception e) {
                 e.printStackTrace();

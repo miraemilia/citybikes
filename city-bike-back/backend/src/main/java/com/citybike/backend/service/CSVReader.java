@@ -17,22 +17,22 @@ import com.citybike.backend.model.Station;
 @Service
 public class CSVReader {
   
-    public static ArrayList<String[]> csvToJourneys(InputStream is) {
+    public static List<JourneyImport> csvToJourneys(InputStream is) {
         try (BufferedReader fileReader = new BufferedReader(new InputStreamReader(is, "UTF-8"));
         CSVParser csvParser = new CSVParser(fileReader, CSVFormat.DEFAULT.withFirstRecordAsHeader().withIgnoreHeaderCase().withTrim());) {
-            ArrayList<String[]> journeys = new ArrayList<>();
+            List<JourneyImport> journeys = new ArrayList<JourneyImport>();
             Iterable<CSVRecord> csvRecords = csvParser.getRecords();
             for (CSVRecord csvRecord: csvRecords) {
                 try {
                     if (Integer.parseInt(csvRecord.get("Covered distance (m)")) >= 10 && Integer.parseInt(csvRecord.get("Duration (sec.)")) >=10) {
-                        String[] journey = {
+                        JourneyImport journey = new JourneyImport(
                             csvRecord.get("Departure"),
                             csvRecord.get("Return"),
-                            csvRecord.get("Departure station id"),
-                            csvRecord.get("Return station id"),
-                            csvRecord.get("Covered distance (m)"),
-                            csvRecord.get("Duration (sec.)")
-                        };
+                            Integer.parseInt(csvRecord.get("Departure station id")),
+                            Integer.parseInt(csvRecord.get("Return station id")),
+                            Integer.parseInt(csvRecord.get("Covered distance (m)")),
+                            Integer.parseInt(csvRecord.get("Duration (sec.)"))
+                        );
                         journeys.add(journey);
                     }
                 } catch (Exception e) {
