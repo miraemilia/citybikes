@@ -8,13 +8,15 @@ import java.io.FileInputStream;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.util.ResourceUtils;
 
 import com.citybike.backend.model.Station;
 import com.citybike.backend.service.CSVReader;
 import com.citybike.backend.service.JourneyImport;
 
-public class CSVReaderTest {
+@ActiveProfiles("test")
+public class CSVReaderTests {
 
     @Test
     void stationsReadFromFile() throws Exception {
