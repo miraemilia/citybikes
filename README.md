@@ -55,8 +55,11 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - run Cypress with `npm run cypress:open`
 
 ### Backend testing
-- navigate to folder city-bikes-back/backend (Maven needed) or Docker Desktop container terminal
-- run tests with `mvn clean test`
+- navigate to folder city-bikes-back/backend (Maven needed)
+    - run tests with `mvn clean test`
+- unit tests in Docker Desktop:
+    - run container with unittest profile: `docker-compose -f docker-compose_unittest.yml up -d`
+    - run tests with `mvn test -Dtest="CSVReaderTests"` in container terminal
 
 ## Changes made in 2023
 - pagination added
@@ -64,6 +67,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - MySQL database
 - Spring profiles: dev, prod, test
 - unit tests for backend (csvReader)
+- integration tests for backend (StationControllerTests)
 
 ## TODO:
 - more validation criteria + tests
