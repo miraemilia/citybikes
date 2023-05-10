@@ -78,8 +78,8 @@ public class JourneyRepositoryTests {
         List<Object[]> topDestinations = journeyRepository.topDestinations(547, pageable);
         List<TopListItem> topFiveFromDatabase = Helper.topListObjectArrayToTopListItem(topDestinations);
         List<TopListItem> topFiveManually = new ArrayList<TopListItem>();
-        topFiveManually.add(new TopListItem(547, 3));
-        topFiveManually.add(new TopListItem(533, 1));
+        topFiveManually.add(new TopListItem(547, "Jämeräntaival", 3));
+        topFiveManually.add(new TopListItem(533, "Tekniikantie", 1));
         assertEquals(topFiveManually, topFiveFromDatabase);
     }
 
@@ -89,9 +89,9 @@ public class JourneyRepositoryTests {
         List<Object[]> topDepartureStations = journeyRepository.topDepartureStations(547, pageable);
         List<TopListItem> topFiveFromDatabase = Helper.topListObjectArrayToTopListItem(topDepartureStations);
         List<TopListItem> topFiveManually = new ArrayList<TopListItem>();
-        topFiveManually.add(new TopListItem(547, 3));
-        topFiveManually.add(new TopListItem(529, 1));
-        topFiveManually.add(new TopListItem(553, 1));
+        topFiveManually.add(new TopListItem(547, "Jämeräntaival", 3));
+        topFiveManually.add(new TopListItem(529, "Keilaniemi (M)", 1));
+        topFiveManually.add(new TopListItem(553, "Metsänneidonpolku", 1));
         assertEquals(topFiveManually, topFiveFromDatabase);
     }
 }

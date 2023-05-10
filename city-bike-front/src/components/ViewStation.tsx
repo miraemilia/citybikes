@@ -1,7 +1,7 @@
 import { Container, Grid, Card, CardContent } from "@mui/material"
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../hooks"
-import { Station } from "../types"
+import { Station, TopListItem } from "../types"
 import journeyService from "../services/journeys"
 import { useEffect, useState } from "react";
 
@@ -11,8 +11,8 @@ const ViewStation = () => {
 
     const [departureCount, setDepartureCount] = useState<number | undefined>(undefined)
     const [arrivalCount, setArrivalCount] = useState<number | undefined>(undefined)
-    const [topDestinations, setTopDestinations] = useState<Array<Array<string>> | undefined>(undefined)
-    const [topDepartureStations, setTopDepartureStations] = useState<Array<Array<string>> | undefined>(undefined)
+    const [topDestinations, setTopDestinations] = useState<TopListItem[] | undefined>(undefined)
+    const [topDepartureStations, setTopDepartureStations] = useState<TopListItem[] | undefined>(undefined)
     const [averageFrom, setAverageFrom] = useState<number | undefined>(undefined)
     const [averageTo, setAverageTo] = useState<number | undefined>(undefined)
 
@@ -24,7 +24,7 @@ const ViewStation = () => {
         journeyService.getAverageFrom(stationId.toString()).then(averageF => setAverageFrom(averageF))
         journeyService.getAverageTo(stationId.toString()).then(averageT => setAverageTo(averageT))
       }, [])
-    
+
     const station : Station | undefined = useAppSelector(state => state.stations.value.find((station) => station.id === Number(stationId)))
 
     if (station === null || station === undefined) {
@@ -69,7 +69,7 @@ const ViewStation = () => {
                             <h4>TOP 5 return stations</h4>
                             <ol>
                                 {topDestinations?.map(d => (
-                                    <li key={d[0]}>{d[1]} ({d[2]})</li>
+                                    <li key={d.id}>{d.name} ({d.count})</li>
                                 ))}
                             </ol>
                         </CardContent>
@@ -81,7 +81,7 @@ const ViewStation = () => {
                             <h4>TOP 5 departure stations</h4>
                             <ol>
                                 {topDepartureStations?.map(d => (
-                                    <li key={d[0]}>{d[1]} ({d[2]})</li>
+                                    <li key={d.id}>{d.name} ({d.count})</li>
                                 ))}
                             </ol>
                         </CardContent>

@@ -9,9 +9,10 @@ public class Helper {
         List<TopListItem> topList = new ArrayList<TopListItem>();
         for (Object[] resultObject : topObjectList) {
             Integer id = (Integer) resultObject[0];
-            Long countLong = (Long) resultObject[1];
+            String name = (String) resultObject[1];
+            Long countLong = (Long) resultObject[2];
             Integer count = countLong.intValue();
-            TopListItem topListItem = new TopListItem(id, count);
+            TopListItem topListItem = new TopListItem(id, name, count);
             topList.add(topListItem);
         }
         return topList;

@@ -15,3 +15,9 @@ export interface Station {
     x: string,
     y: string
 }
+
+export interface TopListItem {
+    id: number,
+    name: string,
+    count: number
+}
