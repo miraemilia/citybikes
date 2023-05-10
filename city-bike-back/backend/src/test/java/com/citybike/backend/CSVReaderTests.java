@@ -15,7 +15,7 @@ import com.citybike.backend.model.Station;
 import com.citybike.backend.service.CSVReader;
 import com.citybike.backend.util.JourneyImport;
 
-@ActiveProfiles("test")
+@ActiveProfiles("unittest")
 public class CSVReaderTests {
 
     @Test
