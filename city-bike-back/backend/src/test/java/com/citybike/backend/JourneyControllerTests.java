@@ -23,7 +23,7 @@ public class JourneyControllerTests {
 
     @Test
     public void getPageStatusOk() throws Exception {
-        mockMvc.perform(get("/api/journeys/25/0")).andExpectAll(
+        mockMvc.perform(get("/api/journeys/0?perPage=25")).andExpectAll(
             status().isOk(),
             content().contentType("application/json")
             );
@@ -32,8 +32,34 @@ public class JourneyControllerTests {
     @Test
     public void getPageJourneysPerPageCorrect() throws Exception {
         String journeysPerPage = "25";
-        mockMvc.perform(get("/api/journeys/" + journeysPerPage + "/0")).andExpect(
+        mockMvc.perform(get("/api/journeys/0?perPage="+journeysPerPage)).andExpect(
             jsonPath("$.pageable.pageSize").value(journeysPerPage));
     }
+
+    @Test
+    public void getTotalDeparturesOk() throws Exception {
+        int id = 42;
+        mockMvc.perform(get("/api/journeys/totalDepartures/?stationId="+id)).andExpect(
+            status().isOk()
+        );
+    }
+
+    @Test
+    public void getTotalDeparturesNotFound() throws Exception {
+        int id = 444222;
+        mockMvc.perform(get("/api/journeys/totalDepartures/?stationId="+id)).andExpect(
+            status().is(404)
+        );
+    }
+
+    @Test
+    public void getTotalDeparturesInvalid() throws Exception {
+        String id = "neljäkymmentäkaksi";
+        mockMvc.perform(get("/api/journeys/totalDepartures/?stationId="+id)).andExpect(
+            status().is(400)
+        );
+    }
+
+    ///...test other endpoints as well
     
 }
