@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.citybike.backend.model.Journey;
 import com.citybike.backend.repository.JourneyRepository;
+import com.citybike.backend.util.Helper;
+import com.citybike.backend.util.TopListItem;
 
 @RestController
 public class JourneyController {
@@ -47,14 +49,18 @@ public class JourneyController {
 
 
     @GetMapping("/api/journeys/{stationId}/topDestinations")
-    public List<Object[]> topFiveDestinations(@PathVariable int stationId) {
+    public List<TopListItem> topFiveDestinations(@PathVariable int stationId) {
         Pageable topFive = PageRequest.of(0, 5);
-        return journeyRepository.topDestinations(stationId, topFive);
+        List<Object[]> topDestinations = journeyRepository.topDestinations(stationId, topFive);
+        List<TopListItem> topList = Helper.topListObjectArrayToTopListItem(topDestinations);
+        return topList;
     }
 
     @GetMapping("/api/journeys/{stationId}/topDepartureStations")
-    public List<Object[]> topFiveDepartureStations(@PathVariable int stationId) {
+    public List<TopListItem> topFiveDepartureStations(@PathVariable int stationId) {
         Pageable topFive = PageRequest.of(0, 5);
-        return journeyRepository.topDepartureStations(stationId, topFive);
+        List<Object[]> topDepartures = journeyRepository.topDepartureStations(stationId, topFive);
+        List<TopListItem> topList = Helper.topListObjectArrayToTopListItem(topDepartures);
+        return topList;
     }
 }

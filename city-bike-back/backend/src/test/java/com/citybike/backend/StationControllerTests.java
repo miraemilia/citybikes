@@ -33,7 +33,7 @@ public class StationControllerTests {
             status().isOk(),
             content().contentType("application/json")
             );
-  }
+    }
 
     @Test
     public void getAllNotEmpty() throws Exception {

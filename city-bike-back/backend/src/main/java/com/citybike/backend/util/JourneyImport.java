@@ -1,4 +1,4 @@
-package com.citybike.backend.service;
+package com.citybike.backend.util;
 
 public class JourneyImport {
     public String departureDate;

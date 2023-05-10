@@ -18,7 +18,7 @@ import com.citybike.backend.model.Station;
 import com.citybike.backend.repository.JourneyRepository;
 import com.citybike.backend.repository.StationRepository;
 import com.citybike.backend.service.CSVReader;
-import com.citybike.backend.service.JourneyImport;
+import com.citybike.backend.util.JourneyImport;
 
 @Component
 public class DatabaseRunner implements CommandLineRunner {

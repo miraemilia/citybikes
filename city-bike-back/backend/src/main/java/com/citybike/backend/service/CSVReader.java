@@ -13,6 +13,7 @@ import org.apache.commons.csv.CSVRecord;
 import org.springframework.stereotype.Service;
 
 import com.citybike.backend.model.Station;
+import com.citybike.backend.util.JourneyImport;
 
 @Service
 public class CSVReader {

@@ -13,7 +13,7 @@ import org.springframework.util.ResourceUtils;
 
 import com.citybike.backend.model.Station;
 import com.citybike.backend.service.CSVReader;
-import com.citybike.backend.service.JourneyImport;
+import com.citybike.backend.util.JourneyImport;
 
 @ActiveProfiles("test")
 public class CSVReaderTests {
