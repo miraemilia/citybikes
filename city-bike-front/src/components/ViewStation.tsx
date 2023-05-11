@@ -40,7 +40,7 @@ const ViewStation = () => {
             <Container maxWidth="sm">
                 <h1></h1>
             <Grid container columnSpacing={8} rowSpacing={4}>
-                <Grid item xs={12}>
+                <Grid item id="stationInfo"  xs={12}>
                     <Card style={{alignContent: 'center', alignItems: 'center'}}>
                         <CardContent>
                             <h2>{station.name}</h2>
@@ -48,7 +48,7 @@ const ViewStation = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item id="departureCount" xs={6}>
                     <Card style={{backgroundColor: "lightgrey"}}>
                         <CardContent>
                             <h1>{departureCount}</h1>
@@ -56,14 +56,14 @@ const ViewStation = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item id="arrivalCount" xs={6}>
                     <Card style={{backgroundColor: "lightgrey"}}>
                         <CardContent>
                             <h1>{arrivalCount}</h1>
                             journeys to the station</CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item id="top5ReturnStations" xs={6}>
                     <Card style={{backgroundColor: "lightgrey"}}>
                         <CardContent>
                             <h4>TOP 5 return stations</h4>
@@ -75,7 +75,7 @@ const ViewStation = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item id="top5ArrivalStations" xs={6}>
                     <Card style={{backgroundColor: "lightgrey"}}>
                         <CardContent>
                             <h4>TOP 5 departure stations</h4>
@@ -87,7 +87,7 @@ const ViewStation = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item id="averageFrom" xs={6}>
                     <Card style={{backgroundColor: "lightgrey"}}>
                         <CardContent>
                             <h1>{averageFrom?.toFixed(0)} m</h1>
@@ -95,7 +95,7 @@ const ViewStation = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item id="averageTo" xs={6}>
                     <Card style={{backgroundColor: "lightgrey"}}>
                         <CardContent>
                             <h1>{averageTo?.toFixed(0)} m</h1>
