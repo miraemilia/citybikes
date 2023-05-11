@@ -23,6 +23,7 @@ const JourneyList = () => {
 
     const handlePerPageChange = (event: SelectChangeEvent<number>) => {
         setPerPage(event.target.value as number)
+        setPage(1)
     }
 
     return (
