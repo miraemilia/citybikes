@@ -12,23 +12,14 @@ import org.springframework.util.ResourceUtils;
 
 import com.citybike.backend.model.Station;
 import com.citybike.backend.service.CSVReader;
-import com.citybike.backend.util.JourneyImport;
 
 @ActiveProfiles("unittest")
-public class CSVReaderTests {
+public class StationValidationTests {
 
     @Test
-    void stationsReadFromFile() throws Exception {
-        File stationFile = ResourceUtils.getFile("classpath:testdata/testCSVstations.csv");
+    void stationsValidated() throws Exception {
+        File stationFile = ResourceUtils.getFile("classpath:testdata/testvalidatestations.csv");
         List<Station> stations = CSVReader.csvToStations(new FileInputStream(stationFile));
         assertEquals(10, stations.size());
     }
-
-    @Test
-    void journeysReadFromFile() throws Exception {
-        File journeyFile = ResourceUtils.getFile("classpath:testdata/testCSVjourneys.csv");
-        List<JourneyImport> journeys = CSVReader.csvToJourneys(new FileInputStream(journeyFile));
-        assertEquals(10, journeys.size());
-    }
-
 }
