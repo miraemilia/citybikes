@@ -57,6 +57,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 ### Backend testing
 - navigate to folder city-bikes-back/backend (Maven needed)
     - run tests with `mvn clean test`
+OR
 - unit tests in Docker Desktop:
     - run container with unittest profile: `docker-compose -f docker-compose_unittest.yml up -d`
     - run tests with `mvn test -Dtest="CSVReaderTests"` in container terminal
@@ -66,15 +67,14 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - ManyToOne relationship between Station (id) and Journey (departure/returnStation) entities -> departure/returnStationName removed from Journey object
 - MySQL database
 - Spring profiles: dev, prod, test
-- unit tests for backend (csvReader)
-- integration tests for backend (StationControllerTests)
+- unit tests for backend (csvReader, HelperTests, JourneyValidationTests, StationValidationTests)
+- integration tests for backend (StationControllerTests, JourneyControllerTests, JourneyRepositoryTests)
+- improved validation
 
 ## TODO:
-- more validation criteria + tests
-- integration testing
-- more E2E tests
 - pagination: navigate to first page after "per page" change
 - station search
+- comprehensive testing (e.g. all endpoints, more station validation tests)
 - better exception handling
 
 ### What next?
