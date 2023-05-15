@@ -52,6 +52,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 
 ### E2E testing
 - both frontend and backend running (see above)
+- nagigate to folder city-bikes-front
 - run Cypress with `npm run cypress:open`
 
 ### Backend testing
@@ -60,7 +61,11 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 OR
 - unit tests in Docker Desktop:
     - run container with unittest profile: `docker-compose -f docker-compose_unittest.yml up -d`
-    - run tests with `mvn test -Dtest="CSVReaderTests"` in container terminal
+    - run tests with e.g. `mvn test -Dtest="CSVReaderTests"` in container terminal
+
+### Frontend testing
+- navigate to folder city-bikes-back/frontend (NPM needed) OR Docker Desktop terminal
+    - run tests with `CI=true npm test`
 
 ## Changes made in 2023
 - pagination added
@@ -69,15 +74,16 @@ OR
 - Spring profiles: dev, prod, test
 - unit tests for backend (csvReader, HelperTests, JourneyValidationTests, StationValidationTests)
 - integration tests for backend (StationControllerTests, JourneyControllerTests, JourneyRepositoryTests)
-- improved validation
+- improved validation in backend
+- Jest tests for frontend
 
 ## TODO:
-- pagination: navigate to first page after "per page" change
-- station search
-- comprehensive testing (e.g. all endpoints, more station validation tests)
+- more comprehensive testing
 - better exception handling
+- formatting date in journey list
 
 ### What next?
+- station search
 - stations on map
 - handling multiple full csv files
 - prettier UI
