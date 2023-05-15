@@ -75,7 +75,7 @@ const ViewStation = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-                <Grid item id="top5ArrivalStations" xs={6}>
+                <Grid item id="top5DepartureStations" xs={6}>
                     <Card style={{backgroundColor: "lightgrey"}}>
                         <CardContent>
                             <h4>TOP 5 departure stations</h4>

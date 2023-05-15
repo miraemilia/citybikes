@@ -1,7 +1,8 @@
-import { Container, Paper, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, Pagination, FormControl, InputLabel, Select, MenuItem, SelectChangeEvent } from "@mui/material"
-import { SetStateAction, useEffect, useState } from "react"
+import { Container, Paper, Table, TableContainer, TableHead, TableBody, TableRow, TableCell, SelectChangeEvent } from "@mui/material"
+import { ChangeEvent, useEffect, useState } from "react"
 import { Journey } from "../types"
 import journeyService from '../services/journeys'
+import PaginationControl from "./PaginationControl"
 
 const JourneyList = () => {
 
@@ -17,8 +18,8 @@ const JourneyList = () => {
         })
     }, [page, perPage])
 
-    const handlePageChange = (event: any, value: SetStateAction<number>) => {
-        setPage(value)
+    const handlePageChange = (event: ChangeEvent<unknown>, pageNumber : number) => {
+        setPage(pageNumber)
     }
 
     const handlePerPageChange = (event: SelectChangeEvent<number>) => {
@@ -29,20 +30,12 @@ const JourneyList = () => {
     return (
         <Container maxWidth="md">
             <h3>Journeys</h3>
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel >Journeys per page</InputLabel>
-                <Select
-                    value={perPage}
-                    onChange={handlePerPageChange}
-                    label="JourneysPerPage"
-                >
-                    <MenuItem value={25}>25</MenuItem>
-                    <MenuItem value={50}>50</MenuItem>
-                    <MenuItem value={75}>75</MenuItem>
-                    <MenuItem value={100}>100</MenuItem>
-                </Select>
-            </FormControl>
-            <Pagination count={pageCount} showFirstButton showLastButton onChange={handlePageChange}/>
+            <PaginationControl 
+                handlePageChange={handlePageChange}
+                handlePerPageChange={handlePerPageChange}
+                perPage={perPage}
+                pageCount={pageCount}
+            />
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>

@@ -40,18 +40,18 @@ describe('view station tests', () => {
         }
     ]
     const top5Departures : TopListItem[] = [
-        { id: 42, name: "Eka", count: 23},
-        { id: 54, name: "Toka", count: 63},
-        { id: 73, name: "Kolmas", count: 24},
-        { id: 25, name: "Neljäs", count: 53},
-        { id: 83, name: "Viides", count: 66}
+        { id: 42, name: "Eka", count: 66},
+        { id: 54, name: "Toka", count: 56},
+        { id: 73, name: "Kolmas", count: 46},
+        { id: 25, name: "Neljäs", count: 36},
+        { id: 83, name: "Viides", count: 26}
     ]
     const top5Arrivals : TopListItem[] = [
-        { id: 42, name: "Eka", count: 84},
-        { id: 54, name: "Toka", count: 72},
-        { id: 73, name: "Kolmas", count: 92},
-        { id: 25, name: "Neljäs", count: 88},
-        { id: 83, name: "Viides", count: 79}
+        { id: 42, name: "Eka", count: 88},
+        { id: 54, name: "Toka", count: 78},
+        { id: 73, name: "Kolmas", count: 68},
+        { id: 25, name: "Neljäs", count: 58},
+        { id: 83, name: "Viides", count: 48}
     ]
 
     beforeEach(() => {
@@ -96,4 +96,37 @@ describe('view station tests', () => {
         const gridItem = component.container.querySelector('#arrivalCount')
         expect(gridItem).toHaveTextContent("234")
     })
+
+    test('arrival count rendered', () => {
+
+        const component = render(<reactRedux.Provider store={store}><ViewStation/></reactRedux.Provider>)
+
+        const gridItem = component.container.querySelector('#top5ReturnStations')
+        expect(gridItem).toHaveTextContent("Kolmas (46)")
+    })
+
+    test('arrival count rendered', () => {
+
+        const component = render(<reactRedux.Provider store={store}><ViewStation/></reactRedux.Provider>)
+
+        const gridItem = component.container.querySelector('#top5DepartureStations')
+        expect(gridItem).toHaveTextContent("Viides (48)")
+    })
+
+    test('average distance from rendered', () => {
+
+        const component = render(<reactRedux.Provider store={store}><ViewStation/></reactRedux.Provider>)
+
+        const gridItem = component.container.querySelector('#averageFrom')
+        expect(gridItem).toHaveTextContent("432")
+    })
+
+    test('average distance to rendered', () => {
+
+        const component = render(<reactRedux.Provider store={store}><ViewStation/></reactRedux.Provider>)
+
+        const gridItem = component.container.querySelector('#averageTo')
+        expect(gridItem).toHaveTextContent("543")
+    })
+
 })
