@@ -7,7 +7,7 @@ const StationList = () => {
 
     return (
         <Container maxWidth="md">
-            <h3>Stations</h3>
+            <h3>Stations listing</h3>
             <ul>
                 {stations.map((station) => (
                     <li key={station.id}>

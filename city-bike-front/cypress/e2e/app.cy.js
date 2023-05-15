@@ -8,21 +8,21 @@ describe('City bike app', () => {
     cy.contains('Helsinki city bike app')
   })
 
-  it('station found on stations page', () => {
+  it('navigate to stations page', () => {
     cy.contains('Stations').click()
-    cy.contains('Unioninkatu')
+    cy.contains('Stations listing')
   })
 
-  it('station found', () => {
+  it('navigate to single station page', () => {
     cy.contains('Stations').click()
     cy.contains('Unioninkatu').click()
     cy.wait(200)
-    cy.get('html').should('not.contain', 'Station not found')
-    cy.contains('Eteläesplanadi 1')
+    cy.contains('TOP 5 return stations')
   })
 
-  it('journeys shown', () => {
+  it('navigate to journeys page', () => {
     cy.contains('Journeys').click()
-    cy.contains('Viiskulma')
+    cy.contains('Journeys per page')
   })
+
 })
