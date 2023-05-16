@@ -21,7 +21,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
     - average distance from/to each station
 #### Frontend
 - listing journeys as a table (25/50/75/100 per page)
-- listing stations with ability to filter
+- listing stations with possibility to filter
 - viewing single station data
 
 ## Technologies used:
@@ -31,28 +31,29 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - Tests: Cypress, Jest, Junit
 
 ## Prerequisites for running the project:
+- [Git](https://github.com/git-guides/install-git)
 - [Docker](https://docs.docker.com/get-docker/)
-- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## How to run the project?
 - clone the project
-- Frontend:
+- run Docker Desktop
+- frontend:
     - nagigate to folder city-bikes-front
     - build image with `docker build -t citybikes .`
     - run with `docker run -p 3000:3000 citybikes` (runs at http://localhost:3000/)
-- Production database (MySQL):
+- backend:
     - navigate to folder city-bikes-back
-    - run with `docker-compose -f docker-compose_db.yml up -d` (runs at http://localhost:3306/)
-- Backend:
-    - nagigate to folder city-bikes-back
     - add a file named .env with content (replace *):
+        ```
         MYSQL_DATABASE: citybikedb
         MYSQL_USER: *
         MYSQL_PASSWORD: *
         H2_USER: *
         H2_PASSWORD: *
-    - Production: run with `docker-compose -f docker-compose_prod.yml up -d` (runs at http://localhost:8080/)
-    - Development: run with `docker-compose -f docker-compose_dev.yml up -d` (runs at http://localhost:8080/)
+        ```
+    - production database (MySQL): run with `docker-compose -f docker-compose_db.yml up -d` (runs at http://localhost:3306/)
+    - production: run with `docker-compose -f docker-compose_prod.yml up -d` (runs at http://localhost:8080/) (may take over 10 mins)
+    - development: run with `docker-compose -f docker-compose_dev.yml up -d` (runs at http://localhost:8080/) (faster option)
 
 ## How to run tests?
 
@@ -77,15 +78,15 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - integration tests for backend
 - improved validation in backend
 - Jest tests for frontend
+- more e2e tests
 - filtering stations in frontend
+- stations on map in frontend
 - caching enabled to somewhat speed up data import from csv
 
 ## TODO:
 - more comprehensive testing
 - better exception handling
-- faster import into database (-> use bigger data files)
-
-### What next?
-- stations on map
+- frontend data validation
+- faster import from csv into database (-> enables use of bigger data files)
 - handling multiple full csv files
 - prettier UI
