@@ -13,4 +13,12 @@ describe('Stations list', () => {
         cy.url().should('include', 'stations/11')
     })
 
+    it('filter working', () => {
+      cy.contains('Kaivopuisto')
+      cy.contains('Karhupuisto')
+      cy.get('#filter').type('ai')
+      cy.contains('Kaivopuisto')
+      cy.contains('Karhupuisto').should('not.exist') 
+    })
+
 })
