@@ -4,6 +4,8 @@ import { useAppSelector } from "../hooks"
 import { Station, TopListItem } from "../types"
 import journeyService from "../services/journeys"
 import { useEffect, useState } from "react";
+import MapComponent from "./MapComponent";
+import { LatLngTuple } from "leaflet";
 
 const ViewStation = () => {
 
@@ -35,6 +37,8 @@ const ViewStation = () => {
         )
     }
 
+    const coordinates : LatLngTuple = [Number(station.y), Number(station.x)]
+
     return (
         <Container maxWidth="md">
             <Container maxWidth="sm">
@@ -45,6 +49,13 @@ const ViewStation = () => {
                         <CardContent>
                             <h2>{station.name}</h2>
                             <h4>{station.address}</h4>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item id="map"  xs={12}>
+                    <Card style={{alignContent: 'center', alignItems: 'center'}}>
+                        <CardContent>
+                            <MapComponent name={station.name} address={station.address} coordinates={coordinates}/>
                         </CardContent>
                     </Card>
                 </Grid>
