@@ -19,7 +19,7 @@ const StationList = () => {
             />
 
             <ul>
-                {stations.filter(station => station.name.includes(filterString)).map((filteredStation) => (
+                {stations.filter(station => station.name.toLowerCase().includes(filterString)).map((filteredStation) => (
                     <li key={filteredStation.id}>
                         <Link href={`/stations/${filteredStation.id}`}>{filteredStation.name}</Link>
                     </li>
