@@ -53,7 +53,7 @@ const JourneyList = () => {
                     <TableBody id="tablerows">
                         {journeys.map((journey) => (
                             <TableRow key={journey.id} >
-                                <TableCell>{journey.id}</TableCell>
+                                <TableCell>#{journey.id}</TableCell>
                                 <TableCell>{format(new Date(journey.departureDate), 'dd.M.yyyy')}</TableCell>
                                 <TableCell>{format(new Date(journey.departureDate), 'H:mm:ss')}</TableCell>
                                 <TableCell>{journey.departureStation.name}</TableCell>

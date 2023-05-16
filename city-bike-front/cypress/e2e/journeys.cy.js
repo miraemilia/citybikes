@@ -6,7 +6,7 @@ describe('Journeys page', () => {
     })
 
     it('journey list not empty', () => {
-        cy.get('#tablerows > tr').contains('Laajalahden aukio')
+        cy.get('#tablerows > tr').should('not.be.empty')
     })
 
     it('journey list size 25 per page', () => {
@@ -33,9 +33,10 @@ describe('Journeys page', () => {
     })
 
     it('page is changed', () => {
+        cy.get("#tablerows").contains('td', '#24')
         cy.contains('Elfvik').should('not.exist')
         cy.get('[aria-label="Go to next page').click()
-        cy.contains('Elfvik')
+        cy.get("#tablerows").contains('td', '#27')
     })
 
 })
