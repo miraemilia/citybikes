@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
@@ -62,7 +60,6 @@ public class DatabaseRunner implements CommandLineRunner {
         insertJourneys(journeyData);
     }
 
-    @Transactional
     public void insertJourneys (List<JourneyImport> journeyData) {
         for (JourneyImport j : journeyData) {
             try {

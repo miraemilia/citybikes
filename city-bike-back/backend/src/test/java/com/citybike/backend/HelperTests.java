@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.citybike.backend.util.Helper;
 import com.citybike.backend.util.TopListItem;
 
-@ActiveProfiles("unittest")
+@ActiveProfiles("test")
 public class HelperTests {
 
     @Test

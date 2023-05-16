@@ -13,7 +13,7 @@ import org.springframework.util.ResourceUtils;
 import com.citybike.backend.model.Station;
 import com.citybike.backend.service.CSVReader;
 
-@ActiveProfiles("unittest")
+@ActiveProfiles("test")
 public class StationValidationTests {
 
     @Test

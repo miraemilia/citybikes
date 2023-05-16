@@ -15,7 +15,7 @@ import org.springframework.util.ResourceUtils;
 import com.citybike.backend.service.CSVReader;
 import com.citybike.backend.util.JourneyImport;
 
-@ActiveProfiles("unittest")
+@ActiveProfiles("test")
 public class JourneyValidationTests {
 
     @Test
