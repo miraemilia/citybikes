@@ -43,8 +43,6 @@ public class DatabaseRunner implements CommandLineRunner {
                 resource = "classpath:data/2021-05-31.csv";
             } else if (activeProfiles[0].equals("prod")){
                 resource = "classpath:data/2021-05-31.csv";
-            } else if (activeProfiles[0].equals("unittest")) {
-                return;
             }
         }
         System.out.println(resource);

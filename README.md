@@ -56,16 +56,11 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - run Cypress with `npm run cypress:open`
 
 ### Backend testing
-- navigate to folder city-bikes-back/backend (Maven needed)
-    - run tests with `mvn clean test`
-OR
-- unit tests in Docker Desktop:
-    - run container with unittest profile: `docker-compose -f docker-compose_unittest.yml up -d`
-    - run tests with e.g. `mvn test -Dtest="CSVReaderTests"` in container terminal
+- `docker run -it city-bike-back-app mvn test`
+
 
 ### Frontend testing
-- navigate to folder city-bikes-back/frontend (NPM needed) OR Docker Desktop terminal
-    - run tests with `CI=true npm test`
+- `docker run -it citybikes npm run test`
 
 ## Changes made in 2023
 - pagination added
