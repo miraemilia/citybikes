@@ -46,7 +46,7 @@ const JourneyList = () => {
                             <TableCell>Duration (sec)</TableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <TableBody id="tablerows">
                         {journeys.map((journey) => (
                             <TableRow key={journey.id} >
                                 <TableCell>{journey.departureStation.name}</TableCell>

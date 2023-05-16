@@ -8,6 +8,7 @@ describe('Single station view', () => {
     it('station found', () => {
         cy.get('html').should('not.contain', 'Station not found')
         cy.contains('Kaivopuisto')
+        cy.contains('Meritori 1')
       })
 
 })
