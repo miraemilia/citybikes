@@ -21,7 +21,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
     - average distance from/to each station
 #### Frontend
 - listing journeys as a table (25/50/75/100 per page)
-- listing stations
+- listing stations with ability to filter
 - viewing single station data
 
 ## Technologies used:
@@ -45,6 +45,12 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
     - run with `docker-compose -f docker-compose_db.yml up -d` (runs at http://localhost:3306/)
 - Backend:
     - nagigate to folder city-bikes-back
+    - add a file named .env with content (replace *):
+        MYSQL_DATABASE: citybikedb
+        MYSQL_USER: *
+        MYSQL_PASSWORD: *
+        H2_USER: *
+        H2_PASSWORD: *
     - Production: run with `docker-compose -f docker-compose_prod.yml up -d` (runs at http://localhost:8080/)
     - Development: run with `docker-compose -f docker-compose_dev.yml up -d` (runs at http://localhost:8080/)
 
@@ -71,15 +77,15 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - integration tests for backend
 - improved validation in backend
 - Jest tests for frontend
+- filtering stations in frontend
+- caching enabled to somewhat speed up data import from csv
 
 ## TODO:
 - more comprehensive testing
 - better exception handling
-- formatting date in journey list
 - faster import into database (-> use bigger data files)
 
 ### What next?
-- station search
 - stations on map
 - handling multiple full csv files
 - prettier UI
