@@ -9,7 +9,7 @@ import PaginationControl from './PaginationControl';
             
             const handlePerPageMock = jest.fn()
             const handlePageChangeMock = jest.fn()
-            const component = render(<PaginationControl 
+            render(<PaginationControl 
                 handlePerPageChange={handlePerPageMock}
                 handlePageChange={handlePageChangeMock}
                 perPage={25}
