@@ -28,7 +28,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - Frontend: React, Typescript, MaterialUI
 - Backend: Spring
 - Database: MySQL, H2
-- Tests: Cypress
+- Tests: Cypress, Jest, Junit
 
 ## Prerequisites for running the project:
 - [Docker](https://docs.docker.com/get-docker/)
@@ -67,8 +67,8 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - ManyToOne relationship between Station (id) and Journey (departure/returnStation) entities -> departure/returnStationName removed from Journey object
 - MySQL database
 - Spring profiles: dev, prod, test
-- unit tests for backend (csvReader, HelperTests, JourneyValidationTests, StationValidationTests)
-- integration tests for backend (StationControllerTests, JourneyControllerTests, JourneyRepositoryTests)
+- unit tests for backend
+- integration tests for backend
 - improved validation in backend
 - Jest tests for frontend
 
@@ -76,6 +76,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - more comprehensive testing
 - better exception handling
 - formatting date in journey list
+- faster import into database (-> use bigger data files)
 
 ### What next?
 - station search
