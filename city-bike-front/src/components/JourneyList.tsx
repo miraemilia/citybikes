@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useState } from "react"
 import { Journey } from "../types"
 import journeyService from '../services/journeys'
 import PaginationControl from "./PaginationControl"
+import format from "date-fns/format"
 
 const JourneyList = () => {
 
@@ -40,6 +41,9 @@ const JourneyList = () => {
                 <Table>
                     <TableHead>
                         <TableRow>
+                            <TableCell>Id</TableCell>
+                            <TableCell>Day</TableCell>
+                            <TableCell>Time of departure</TableCell>
                             <TableCell>From</TableCell>
                             <TableCell>To</TableCell>
                             <TableCell>Distance (m)</TableCell>
@@ -49,6 +53,9 @@ const JourneyList = () => {
                     <TableBody id="tablerows">
                         {journeys.map((journey) => (
                             <TableRow key={journey.id} >
+                                <TableCell>{journey.id}</TableCell>
+                                <TableCell>{format(new Date(journey.departureDate), 'dd.M.yyyy')}</TableCell>
+                                <TableCell>{format(new Date(journey.departureDate), 'H:mm:ss')}</TableCell>
                                 <TableCell>{journey.departureStation.name}</TableCell>
                                 <TableCell>{journey.returnStation.name}</TableCell>
                                 <TableCell>{journey.distance}</TableCell>
