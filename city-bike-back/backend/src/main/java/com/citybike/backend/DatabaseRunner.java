@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
 import org.springframework.util.ResourceUtils;
 
 import com.citybike.backend.model.Journey;
@@ -33,14 +32,14 @@ public class DatabaseRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        String resource = "classpath:data/testjourneys.csv";
+        String resource = "classpath:testdata/testjourneys.csv";
 
         if (activeProfiles.length > 0) {
             System.out.println(activeProfiles[0]);
             if (activeProfiles[0].equals("dev")) {
                 resource = "classpath:data/2021-05-31.csv";
             } else if (activeProfiles[0].equals("prod")){
-                resource = "classpath:data/2021-05-31.csv";
+                resource = "classpath:data/2021-05-31.csv"; //change file after solving database init speed up
             }
         }
         System.out.println(resource);
