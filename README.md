@@ -58,6 +58,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 ## How to run tests?
 
 ### E2E testing
+- [npm](https://nodejs.org/en/download) required
 - both frontend and backend running (see above)
 - nagigate to folder city-bikes-front
 - run Cypress with `npm run cypress:open`
@@ -84,6 +85,7 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - caching enabled to somewhat speed up data import from csv
 
 ## TODO:
+- settings for running e2e tests in Docker
 - more comprehensive testing
 - better exception handling
 - frontend data validation
