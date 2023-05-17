@@ -55,6 +55,9 @@
     ]
   },
   "proxy": "http://host.docker.internal:8080",
+  "jest": {
+    "transformIgnorePatterns" : ["/!node_modules\\/react-leaflet/"]
+  },
   "devDependencies": {
     "@jest/globals": "^29.5.0",
     "@types/leaflet": "^1.9.3",

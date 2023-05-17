@@ -28,15 +28,15 @@ describe('view station tests', () => {
             id: 1,
             name: "Asema",
             address: "Asematie 1",
-            x:"25",
-            y: "60"
+            x: "24.840319",
+            y: "60.16582"
         },
         {
             id: 2,
             name: "Pysäkki",
             address: "Pysäkkikatu 1",
-            x: "25",
-            y: "60"
+            x: "24.840319",
+            y: "60.16582"
         }
     ]
     const top5Departures : TopListItem[] = [
@@ -57,10 +57,10 @@ describe('view station tests', () => {
     beforeEach(() => {
         jest.resetAllMocks()
 
-        jest.spyOn(Router, 'useParams').mockReturnValue({ id: "1" });
-
         const hooks = { useAppSelector }
         jest.spyOn(hooks, 'useAppSelector').mockImplementation((callback) => callback({journeys : { value : mockJourneys}, stations: { value : mockStations}}))
+
+        jest.spyOn(Router, 'useParams').mockReturnValue({ id: "1" });
 
         jest.spyOn(React, 'useState').mockImplementationOnce(() => [123, jest.fn()])
         jest.spyOn(React, 'useState').mockImplementationOnce(() => [234, jest.fn()])
@@ -68,6 +68,7 @@ describe('view station tests', () => {
         jest.spyOn(React, 'useState').mockImplementationOnce(() => [top5Arrivals, jest.fn()])  
         jest.spyOn(React, 'useState').mockImplementationOnce(() => [432, jest.fn()])  
         jest.spyOn(React, 'useState').mockImplementationOnce(() => [543, jest.fn()])
+        jest.spyOn(React, 'useState').mockImplementationOnce(() => [true, jest.fn()])
 
 
     })
@@ -75,6 +76,7 @@ describe('view station tests', () => {
     test('station info rendered', () => {
 
         const component = render(<reactRedux.Provider store={store}><ViewStation/></reactRedux.Provider>)
+        console.log(store)
 
         const gridItem = component.container.querySelector('#stationInfo')
         expect(gridItem).toHaveTextContent("Asema")

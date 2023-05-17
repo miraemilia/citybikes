@@ -5,7 +5,6 @@ import { Station, TopListItem } from "../types"
 import journeyService from "../services/journeys"
 import { useEffect, useState } from "react";
 import MapComponent from "./MapComponent";
-import { LatLngTuple } from "leaflet";
 
 const ViewStation = () => {
 
@@ -17,6 +16,7 @@ const ViewStation = () => {
     const [topDepartureStations, setTopDepartureStations] = useState<TopListItem[] | undefined>(undefined)
     const [averageFrom, setAverageFrom] = useState<number | undefined>(undefined)
     const [averageTo, setAverageTo] = useState<number | undefined>(undefined)
+    const [test, setTest] = useState<boolean | undefined>(false)
 
     useEffect(() => {
         journeyService.getStationDepartures(stationId.toString()).then(totalDepartures => setDepartureCount(totalDepartures))
@@ -37,8 +37,6 @@ const ViewStation = () => {
         )
     }
 
-    const coordinates : LatLngTuple = [Number(station.y), Number(station.x)]
-
     return (
         <Container maxWidth="md">
             <Container maxWidth="sm">
@@ -54,9 +52,7 @@ const ViewStation = () => {
                 </Grid>
                 <Grid item id="map"  xs={12}>
                     <Card style={{alignContent: 'center', alignItems: 'center'}}>
-                        <CardContent>
-                            <MapComponent name={station.name} address={station.address} coordinates={coordinates}/>
-                        </CardContent>
+                        {test ? null  : <CardContent><MapComponent station={station}/></CardContent>}
                     </Card>
                 </Grid>
                 <Grid item id="departureCount" xs={6}>

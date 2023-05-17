@@ -1,14 +1,15 @@
 import L, { LatLngTuple } from 'leaflet';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import "leaflet/dist/leaflet.css";
+import { Station } from '../types';
 
 type MapProps = {
-    name: string
-    address: string
-    coordinates: LatLngTuple
+    station: Station
 }
 
-const MapComponent = ({name, address, coordinates} : MapProps ) => {
+const MapComponent = ({station} : MapProps ) => {
+
+    const coordinates : LatLngTuple = [Number(station.y), Number(station.x)]
 
     const icon = L.icon({ iconUrl: "/images/marker-icon.png" });
     
@@ -24,8 +25,8 @@ const MapComponent = ({name, address, coordinates} : MapProps ) => {
                 />
             <Marker position={coordinates} icon={icon}>
                 <Popup>
-                    <b>{name}</b><br/>
-                    {address}<br/>
+                    <b>{station.name}</b><br/>
+                    {station.address}<br/>
                     Latitude: {coordinates[0]}<br />
                     Longitude: {coordinates[1]}
                 </Popup>
