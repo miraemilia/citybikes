@@ -1,7 +1,7 @@
 describe('Stations list', () => {
 
     beforeEach(() => {
-      cy.visit('http://localhost:3000/stations')
+      cy.visit('/stations')
     })
 
     it('station list contains station', () => {

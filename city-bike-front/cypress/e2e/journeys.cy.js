@@ -1,7 +1,7 @@
 describe('Journeys page', () => {
 
     beforeEach(() => {
-      cy.visit('http://localhost:3000/journeys')
+      cy.visit('/journeys')
       cy.wait(200)
     })
 

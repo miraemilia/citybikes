@@ -1,7 +1,7 @@
 describe('Single station view', () => {
 
     beforeEach(() => {
-      cy.visit('http://localhost:3000/stations/1')
+      cy.visit('/stations/1')
       cy.wait(200)
     })
 
