@@ -35,3 +35,4 @@ build/
 .env
 
 devdb.mv.db
+fly.toml

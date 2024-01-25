@@ -24,6 +24,24 @@ This project is a pre-assignment for applying to Solita Dev Academy/summer 2022 
 - listing stations with possibility to filter
 - viewing single station data
 
+### Screenshots
+
+#### Stations
+
+Station list with links to station page
+![Stations](readme-images/station-list.png)
+
+Single station view with map and data
+![Station](readme-images/single-station.png)
+
+API stations
+![API stations](readme-images/api-stations.png)
+
+#### Journeys
+
+Paginated journey table
+![Journeys](readme-images/journey-page.png)
+
 ## Technologies used:
 - Frontend: React, Typescript, MaterialUI
 - Backend: Spring
